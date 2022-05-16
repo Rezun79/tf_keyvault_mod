@@ -1,7 +1,7 @@
 
 data "azurerm_key_vault" "keyvault" {
   name                = local.key_vault_name
-  resource_group_name = local.rg_name
+  resource_group_name = local.key_vault_rg_name
 }
 
 output "vault_uri" {
