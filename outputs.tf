@@ -4,9 +4,9 @@ data "azurerm_key_vault" "keyvault" {
   resource_group_name = local.key_vault_rg_name
 }
 
-output "vault_uri" {
-  value = data.azurerm_key_vault.keyvault.vault_uri
-}
+# output "vault_uri" {
+#   value = data.azurerm_key_vault.keyvault.vault_uri
+# }
 
 data "azurerm_key_vault_secret" "secret" {
   name         = local.secret_name
