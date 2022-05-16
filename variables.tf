@@ -1,5 +1,5 @@
 variable "key_vault_rg_name" {
-
+    
 }
 
 variable "subscription_id" {
