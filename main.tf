@@ -4,8 +4,9 @@
 #   key_vault_id = data.azurerm_key_vault.keyvault.id
 # }
 data "azuread_service_principal" "rg_spn" {
-  object_id = local.root_spn_client_id
+  application_id = local.root_spn_client_id
 }
+
 resource "azurerm_key_vault" "rg_keyvault" {
   name                        = "${local.rg_name}keyvault"
   location                    = "West Europe"
@@ -16,11 +17,10 @@ resource "azurerm_key_vault" "rg_keyvault" {
   purge_protection_enabled    = false
 
   sku_name = "standard"
-
-  access_policy {
+    access_policy {
     tenant_id = local.tenant_id
-    object_id = data.azuread_service_principal.rg_spn.object_id
-
+    object_id = local.spn_object_id
+    
     key_permissions = [
     ]
 
@@ -35,12 +35,12 @@ resource "azurerm_key_vault" "rg_keyvault" {
 }
 
 
-data "azurerm_key_vault" "rg_keyvault" {
-  name                = azurerm_key_vault.rg_keyvault.name
-  resource_group_name = local.rg_name
+data "azurerm_key_vault" "rg_platform_keyvault" {
+  name                = local.platform_keyvault
+  resource_group_name = local.platform_rg
 }
 resource "azurerm_key_vault_secret" "rg_spn_secret" {
   name         = "${local.rg_name}${local.spn_client_id}"
   value        = "${local.secret}"
-  key_vault_id = data.azurerm_key_vault.rg_keyvault.id
+  key_vault_id = data.azurerm_key_vault.rg_platform_keyvault.id
 }
