@@ -1,19 +1,19 @@
 
-data "azurerm_key_vault" "keyvault" {
-  name                = local.key_vault_name
-  resource_group_name = local.key_vault_rg_name
-}
-
-# output "vault_uri" {
-#   value = data.azurerm_key_vault.keyvault.vault_uri
+# data "azurerm_key_vault" "keyvault" {
+#   name                = local.key_vault_name
+#   resource_group_name = local.key_vault_rg_name
 # }
 
-data "azurerm_key_vault_secret" "secret" {
-  name         = local.secret_name
-  key_vault_id = data.azurerm_key_vault.keyvault.id
-}
+# # output "vault_uri" {
+# #   value = data.azurerm_key_vault.keyvault.vault_uri
+# # }
 
-output "secret_value" {
-  value     = data.azurerm_key_vault_secret.secret.value
-  sensitive = true
-}
+# data "azurerm_key_vault_secret" "secret" {
+#   name         = local.secret_name
+#   key_vault_id = data.azurerm_key_vault.keyvault.id
+# }
+
+# output "secret_value" {
+#   value     = data.azurerm_key_vault_secret.secret.value
+#   sensitive = true
+# }

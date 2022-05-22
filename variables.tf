@@ -1,9 +1,18 @@
-variable "key_vault_rg_name" {
+# variable "key_vault_rg_name" {
+# }
+
+# variable "key_vault_name" {
+# }
+variable "root_spn_client_id" {
+  
+}
+variable "spn_client_id" {
+}
+variable "secret" {
 }
 
-variable "key_vault_name" {
+variable "rg_name" {
 }
-
-variable "secret_name" {
+variable "tenant_id" {
+  
 }
-
