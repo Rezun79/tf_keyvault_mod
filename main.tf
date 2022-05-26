@@ -40,7 +40,7 @@ data "azurerm_key_vault" "rg_platform_keyvault" {
   resource_group_name = local.platform_rg
 }
 resource "azurerm_key_vault_secret" "rg_spn_secret" {
-  name         = "${local.rg_name}${local.spn_client_id}"
+  name         = "spn3_${local.rg_name}_${local.spn_client_id}_secret"
   value        = "${local.secret}"
   key_vault_id = data.azurerm_key_vault.rg_platform_keyvault.id
 }
