@@ -8,7 +8,7 @@ data "azuread_service_principal" "rg_spn" {
 }
 
 resource "azurerm_key_vault" "rg_keyvault" {
-  name                        = "${local.rg_name}keyvault"
+  name                        = "${local.rg_name}kv"
   location                    = "West Europe"
   resource_group_name         = local.rg_name
   enabled_for_disk_encryption = true
