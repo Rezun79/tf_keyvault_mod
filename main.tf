@@ -8,7 +8,7 @@ data "azuread_service_principal" "rg_spn" {
 }
 
 resource "azurerm_key_vault" "rg_keyvault" {
-  name                        = "${local.rg_name}keyvault"
+  name                        = "${local.rg_name}kv"
   location                    = "West Europe"
   resource_group_name         = local.rg_name
   enabled_for_disk_encryption = true
@@ -40,7 +40,7 @@ data "azurerm_key_vault" "rg_platform_keyvault" {
   resource_group_name = local.platform_rg
 }
 resource "azurerm_key_vault_secret" "rg_spn_secret" {
-  name         = "${local.rg_name}${local.spn_client_id}"
+  name         = "spn3-${local.rg_name}-${local.spn_client_id}"
   value        = "${local.secret}"
   key_vault_id = data.azurerm_key_vault.rg_platform_keyvault.id
 }
